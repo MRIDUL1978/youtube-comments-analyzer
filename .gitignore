@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.log
+
+# Virtual environments
+venv/
+env/
+
+# Output files
+*.csv
+*.png
+*.pdf
+
+# VSCode
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini

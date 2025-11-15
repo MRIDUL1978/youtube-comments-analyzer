@@ -1,0 +1,9 @@
+```txt
+youtube-comment-downloader
+vaderSentiment
+langdetect
+googletrans==4.0.0rc1
+deep-translator
+tqdm
+matplotlib
+reportlab
