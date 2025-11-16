@@ -1,13 +1,3 @@
-#!/usr/bin/env python3
-"""
-Final YouTube Comment Sentiment Analyzer (Light Theme)
-- Emoji/symbol cleaning before translation & sentiment
-- Language detection (langdetect)
-- Best-effort translation: googletrans (if available) -> deep-translator fallback
-- Sentiment analysis using VADER on English text
-- CSV export + PNG charts + Ultra-professional PDF (light theme)
-"""
-
 import csv
 import re
 import os
@@ -49,9 +39,9 @@ from reportlab.platypus import (
 )
 from reportlab.pdfgen import canvas
 
-# ---------------------------
+
 # Configuration
-# ---------------------------
+
 COMMENT_LIMIT = 1000
 CSV_TEMPLATE = "{video_id}_comments.csv"
 PDF_TEMPLATE = "{video_id}_report.pdf"
@@ -60,9 +50,7 @@ HIST_TEMPLATE = "{video_id}_compound_hist.png"
 TOP_WORDS_COUNT = 20
 SAMPLE_PER_SENT = 6
 
-# ---------------------------
 # Utility helpers
-# ---------------------------
 
 # robust emoji & symbol stripper (keeps letters, numbers, common punctuation)
 _EMOJI_PATTERN = re.compile(
@@ -153,9 +141,7 @@ def extract_words(text: str):
     tokens = [t for t in text.split() if len(t) > 1]
     return tokens
 
-# ---------------------------
 # Main analysis function
-# ---------------------------
 
 def analyze_comments(video_url: str, limit: int = COMMENT_LIMIT) -> dict:
     downloader = YoutubeCommentDownloader()
@@ -223,9 +209,7 @@ def analyze_comments(video_url: str, limit: int = COMMENT_LIMIT) -> dict:
         "processed": processed
     }
 
-# ---------------------------
-# Charts (Light theme)
-# ---------------------------
+# Charts 
 
 def generate_charts(video_id: str, counts: dict, compound_scores: list) -> Tuple[str, str]:
     labels = list(counts.keys())
@@ -251,13 +235,7 @@ def generate_charts(video_id: str, counts: dict, compound_scores: list) -> Tuple
 
     return pie_path, hist_path
 
-# ---------------------------
-# PDF (Light theme)
-# ---------------------------
-
-# ---------------------------
-# PDF (Light theme)
-# ---------------------------
+# PDF 
 
 class NumberedCanvas(canvas.Canvas):
     def __init__(self, *args, **kwargs):
@@ -435,10 +413,7 @@ def build_pdf(report_data: dict, pie_path: str, hist_path: str) -> str:
     return pdf_file
 
 
-
-# ---------------------------
 # CLI
-# ---------------------------
 
 def main():
     print("YouTube Comment Sentiment Analyzer — Light Theme")
